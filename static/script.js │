@@ -1,0 +1,110 @@
+let selectedRow = null;
+
+function selectRow(row){
+
+```
+selectedRow = row;
+
+document.getElementById("name").value =
+row.cells[0].innerHTML;
+
+document.getElementById("marks").value =
+row.cells[1].innerHTML;
+
+document.getElementById("attendance").value =
+row.cells[2].innerHTML;
+```
+
+}
+
+function addStudent(){
+
+```
+let name = document.getElementById("name").value;
+
+let marks = document.getElementById("marks").value;
+
+let attendance = document.getElementById("attendance").value;
+
+
+let result = "Pass";
+
+
+if(marks < 40 || attendance < 45){
+
+    result = "Fail";
+
+}
+
+
+let table = document.getElementById("studentTable");
+
+let row = table.insertRow();
+
+
+row.setAttribute("onclick","selectRow(this)");
+
+
+row.insertCell(0).innerHTML = name;
+row.insertCell(1).innerHTML = marks;
+row.insertCell(2).innerHTML = attendance;
+row.insertCell(3).innerHTML = result;
+```
+
+}
+
+function editStudent(){
+
+```
+if(selectedRow == null){
+
+    alert("Select Row");
+
+    return;
+
+}
+
+
+let name = document.getElementById("name").value;
+
+let marks = document.getElementById("marks").value;
+
+let attendance = document.getElementById("attendance").value;
+
+
+let result = "Pass";
+
+
+if(marks < 40 || attendance < 45){
+
+    result = "Fail";
+
+}
+
+
+selectedRow.cells[0].innerHTML = name;
+selectedRow.cells[1].innerHTML = marks;
+selectedRow.cells[2].innerHTML = attendance;
+selectedRow.cells[3].innerHTML = result;
+```
+
+}
+
+function deleteStudent(){
+
+```
+if(selectedRow == null){
+
+    alert("Select Row");
+
+    return;
+
+}
+
+
+selectedRow.remove();
+
+selectedRow = null;
+```
+
+}
