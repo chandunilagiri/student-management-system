@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect
 import sqlite3
+import os
 
 app = Flask(__name__)
 
@@ -35,7 +36,6 @@ def add_student():
     marks = int(request.form['marks'])
     attendance = int(request.form['attendance'])
 
-    # Result Logic
     if marks < 40 or attendance < 45:
         result = "Fail"
     else:
@@ -113,14 +113,9 @@ def update_student(id):
     return redirect('/')
 
 
+# Render Deployment
 if __name__ == '__main__':
-    app.run(debug=True)
-import webbrowser
-
-if __name__ == '__main__':
-
-
-     webbrowser.open('http://127.0.0.1:5000')
-
-     app.run(debug=True)
-
+    app.run(
+        host='0.0.0.0',
+        port=int(os.environ.get('PORT', 5000))
+    )
